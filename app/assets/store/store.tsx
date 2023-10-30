@@ -3,6 +3,7 @@
 import {createContext, useContext, Dispatch, SetStateAction, useState} from "react"
 
 type Plush = {
+  totalPrice: ReactNode;
   id?: string,
   name: string,
   sales:{

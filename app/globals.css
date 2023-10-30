@@ -21,3 +21,7 @@ html{
   font-family:'Poppins', sans-serif;
   background-color: rgb(176, 247, 247);
 }
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

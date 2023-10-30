@@ -11,7 +11,7 @@ const Cart = () => {
   const [show, setShow] = useState(false)
 
   const onCartClick = (e: any) =>{
-    setShow(prevShow => !prevShow)
+    setShow(prevShow => !prevShow && cart.length > 0)
   }
 
   const deleteCartItem = (id: string | undefined) =>{
@@ -22,13 +22,28 @@ const Cart = () => {
     });
   }
 
+  const total = () =>{
+    let tot: any = 0;
+    cart.forEach((el) => {
+      tot += el.totalPrice;
+    })
+    return parseFloat(tot).toFixed(2);
+  }
+
   const cartDisplay = cart.map((plush) =>{
     return (
       <div key={plush.id} className="flex flex-row">
-        <Image src={plush.image} width={50} height={50} alt={plush.imageAlt} className="rounded-3xl p-1"/>
+        <Image
+          src={plush.image}
+          width={50}
+          height={50}
+          alt={plush.imageAlt}
+          className="rounded-3xl p-1"
+        />
         <div className="flex flex-row items-center rounded-lg">
           <p className="font-semibold ml-2">{plush.name}</p>
-          <p className="ml-6">{(plush.qty = 0)}</p>
+          <p className="ml-6">{plush.qty}</p>
+          <p className="ml-6">{plush.totalPrice}</p>
           <button
             className="mx-10"
             onClick={() => {
@@ -53,6 +68,7 @@ const Cart = () => {
       {show && (
         <div className="absolute top-24 right-2 bg-lime-100 rounded-2xl max-h-52 overflow-y-auto">
           <div>{cartDisplay}</div>
+          <h3>Total Price: {total()}</h3>
           <Link
             href="../checkout"
             className="flex border-2 border-solid border-black p-2 rounded-xl my-2 mx-auto w-44 justify-center hover:bg-green-200">

@@ -34,7 +34,7 @@ const DisplayBody = () => {
           height={180}
           alt={plush.imageAlt}
           className="rounded-xl mb-4 mr-2 aspect-square"
-          // onClick={() => setCart([...cart, plush])}
+          // 
         />
         <div>
           <h2 className="font-bold flex-wrap">{plush.name}</h2>

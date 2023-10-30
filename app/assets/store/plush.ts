@@ -1,21 +1,20 @@
-import { nanoid } from "@reduxjs/toolkit";
-
 export type Plush = {
-  id?: string,
-  name: string,
-  sales:{
-    prices: string[],
-    sizes: string[]
-  },
-  image: string,
-  qty?: number,
-  imageAlt: string,
-  show?: boolean
+  id?: string;
+  name: string;
+  sales: {
+    prices: string[];
+    sizes: string[];
+  };
+  image: string;
+  qty?: number;
+  imageAlt: string;
+  show?: boolean;
+  totalPrice?: number | string;
 };
 
 export const Plushies: Plush[] = [
   {
-    id: nanoid(),
+    id: "1",
     name: "Fat Black Cat",
     sales: {
       prices: ["10.99", "15.99", "20.99"],
@@ -26,7 +25,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "2",
     name: "Fat Puppy",
     sales: {
       prices: ["10.99", "20.99"],
@@ -37,7 +36,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "3",
     name: "Stabby Duck",
     sales: {
       prices: ["15.99", "20.99"],
@@ -48,7 +47,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "4",
     name: "Soulless Duck",
     sales: {
       prices: ["20.99"],
@@ -59,7 +58,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "5",
     name: "Gengar",
     sales: {
       prices: ["10.99", "15.99", "20.99"],
@@ -70,7 +69,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "6",
     name: "Panda",
     sales: {
       prices: ["10.99", "15.99"],
@@ -81,7 +80,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "7",
     name: "Pikachu",
     sales: {
       prices: ["10.99", "15.99", "20.99"],
@@ -92,7 +91,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "8",
     name: "Sleepy Red Panda",
     sales: {
       prices: ["15.99", "20.99"],
@@ -103,7 +102,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "9",
     name: "Snorlax",
     sales: {
       prices: ["15.99", "20.99"],
@@ -114,7 +113,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "10",
     name: "Innocent Octopus",
     sales: {
       prices: ["10.99", "15.99"],
@@ -125,7 +124,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "11",
     name: "Chonky T-rex",
     sales: {
       prices: ["15.99", "20.99"],
@@ -136,7 +135,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "12",
     name: "Sea Turtle",
     sales: {
       prices: ["10.99", "20.99"],
@@ -147,7 +146,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "13",
     name: "Burger Bunny",
     sales: {
       prices: ["10.99", "20.99"],
@@ -158,7 +157,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "14",
     name: "Emotional Support Fries",
     sales: {
       prices: ["10.99", "20.99"],
@@ -169,7 +168,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "15",
     name: "Emotional Support Dumplings",
     sales: {
       prices: ["10.99", "20.99"],
@@ -180,7 +179,7 @@ export const Plushies: Plush[] = [
     show: true,
   },
   {
-    id: nanoid(),
+    id: "16",
     name: "Emotional Support Nuggets",
     sales: {
       prices: ["10.99", "20.99"],
