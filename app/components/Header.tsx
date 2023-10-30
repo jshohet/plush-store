@@ -4,10 +4,11 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <div>
-      <Link href="./item">item page</Link>
-      <Cart /></div>
-  )
+    <div className="flex items-center">
+      <h1 className="font-bold text-3xl mx-auto">Chew Plush &trade;</h1>
+      <Cart />
+    </div>
+  );
 }
 
 export default Header
