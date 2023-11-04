@@ -41,7 +41,6 @@ const ItemForm = () => {
     }
   }
 //TODO - fix ids so delete works but can add more than one of each item
-console.log(cart)
 
   return (
     <div className="flex flex-row align-middle justify-center items-center">
@@ -116,6 +115,7 @@ console.log(cart)
                   name="qty"
                   value={qty}
                   className="text-center w-16 text-md font-semibold rounded-lg"
+                  onChange={(e) => setQty(parseFloat(e.target.value))}
                 />
                 <button
                   onClick={addQty}

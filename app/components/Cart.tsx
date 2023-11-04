@@ -1,14 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalCart } from "../assets/store/store";
 import Image from "next/image";
 import { BsCart4 } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import Link from "next/link";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Cart = () => {
   const { cart, setCart } = useGlobalCart();
   const [show, setShow] = useState(false);
+  const [total, setTotal] = useState<number>(0);
 
   const onCartClick = (e: any) => {
     setShow((prevShow) => !prevShow && cart.length > 0);
@@ -22,17 +24,27 @@ const Cart = () => {
     });
   };
 
-  const total = () => {
-    let tot: any = 0;
-    cart.forEach((el) => {
-      tot += el.totalPrice;
-    });
-    return parseFloat(tot).toFixed(2);
-  };
+  useEffect(() =>{
+    const totalPrice = () => {
+      if (cart.length > 0) {
+        cart.forEach((el) => {
+          setTotal(
+            (total + parseFloat(el.totalPrice)
+          ));
+        });
+      }else{
+        setTotal(0)
+      }
+    };
+    
+    totalPrice();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart])  
 
   const cartDisplay = cart.map((plush) => {
     return (
-      <div key={plush.id} className="flex flex-row">
+      <div key={nanoid()} className="flex flex-row">
         <Image
           src={plush.image}
           width={50}
@@ -58,6 +70,8 @@ const Cart = () => {
     );
   });
 
+  
+
   return (
     <div className="flex flex-col h-36 z-50 ">
       <BsCart4
@@ -71,7 +85,7 @@ const Cart = () => {
           {cartDisplay.length > 0 && (
             <div>
               <h3 className="ml-2">
-                <span className="italic">Total Price:</span> ${total()}
+                <span className="italic">Total Price:</span> ${total.toFixed(2)}
               </h3>
               <Link
                 href="../checkout"

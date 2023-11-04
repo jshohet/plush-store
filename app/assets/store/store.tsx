@@ -3,16 +3,16 @@
 import {createContext, useContext, Dispatch, SetStateAction, useState} from "react"
 
 type Plush = {
-  totalPrice: ReactNode;
-  id?: string,
-  name: string,
-  sales:{
-    prices: string[],
-    sizes: string[]
-  },
-  image: string,
-  qty?: number,
-  imageAlt: string
+  id?: string;
+  name: string;
+  sales: {
+    prices: string[];
+    sizes: string[];
+  };
+  image: string;
+  qty?: number;
+  imageAlt: string;
+  totalPrice: any;
 };
 
 interface CartProps {
