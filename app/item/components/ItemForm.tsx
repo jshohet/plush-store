@@ -44,7 +44,7 @@ const ItemForm = () => {
 console.log(cart)
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row align-middle justify-center items-center">
       <div>
         {currentItem && (
           <Image
@@ -56,73 +56,88 @@ console.log(cart)
           />
         )}
       </div>
-      <div>
+      <div className="ml-6">
         {currentItem && (
           <div>
             <div>
-              <h2>{currentItem.name}</h2>
-              <p>
+              <h2 className="font-bold text-xl mb-2">{currentItem.name}</h2>
+              <p className="text-lg italic mb-2">
+                $
                 {
                   currentItem.sales.prices[
                     currentItem.sales.sizes.indexOf(selectedSize)
                   ]
                 }
               </p>
-              <div>
+              <div className="flex flex-row mb-2">
                 {currentItem.sales.sizes.includes("sm") && (
-                  <div>
-                    <label htmlFor="sm">Small (5&quot;)</label>
+                  <div className="mr-4">
                     <input
                       type="radio"
                       id="sm"
                       name="size"
                       value="sm"
                       onChange={onSelectChange}
+                      className="mr-2"
                     />
+                    <label htmlFor="sm">Small (5&quot;)</label>
                   </div>
                 )}
                 {currentItem.sales.sizes.includes("md") && (
-                  <div>
-                    <label htmlFor="md">Medium (10&quot;)</label>
+                  <div className="mr-4">
                     <input
                       type="radio"
                       id="md"
                       name="size"
                       value="md"
                       onChange={onSelectChange}
+                      className="mr-2"
                     />
+                    <label htmlFor="md">Medium (10&quot;)</label>
                   </div>
                 )}
                 {currentItem.sales.sizes.includes("lg") && (
-                  <div>
-                    <label htmlFor="lg">Large (15&quot;)</label>
+                  <div className="mr-4">
                     <input
                       type="radio"
                       id="lg"
                       name="size"
                       value="lg"
                       onChange={onSelectChange}
+                      className="mr-2"
                     />
+                    <label htmlFor="lg">Large (15&quot;)</label>
                   </div>
                 )}
               </div>
-              <input
-                type="number"
-                name="qty"
-                value={qty}
-                className="text-center w-16"
-              />
-              <button onClick={addQty}>+</button>
-              <button onClick={minusQty}>-</button>
+              <div className="mb-2">
+                <input
+                  type="number"
+                  name="qty"
+                  value={qty}
+                  className="text-center w-16 text-md font-semibold rounded-lg"
+                />
+                <button
+                  onClick={addQty}
+                  className="border-2 border-slate-500 border-solid mx-1 px-2 font-bold rounded-full text-sm hover:bg-green-300">
+                  +
+                </button>
+                <button
+                  onClick={minusQty}
+                  className="border-2 border-slate-500 border-solid mx-1 px-2 font-bold rounded-full text-sm hover:bg-green-300">
+                  -
+                </button>
+              </div>
             </div>
             <button
+              className="border-2 border-slate-500 border-solid px-2 rounded-lg hover:bg-green-300"
               onClick={() =>
                 setCart([
                   ...cart,
                   {
                     ...currentItem,
                     qty: qty,
-                    totalPrice: totalPriceCalc()
+                    totalPrice: totalPriceCalc(),
                   },
                 ])
               }>
