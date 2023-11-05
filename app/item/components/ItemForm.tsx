@@ -1,47 +1,57 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import { useGlobalCart } from "../../assets/store/store";
-import { useSearchParams } from 'next/navigation';
-import { Plushies, Plush } from '@/app/assets/store/plush';
+"use client";
+import React, { useEffect, useState } from "react";
+import { useGlobalCart, useGlobalTotal } from "../../assets/store/store";
+import { useSearchParams } from "next/navigation";
+import { Plushies, Plush } from "@/app/assets/store/plush";
 import Image from "next/image";
-
+import { current, nanoid } from "@reduxjs/toolkit";
 
 const ItemForm = () => {
   const { cart, setCart } = useGlobalCart();
+  const { total, setTotal } = useGlobalTotal();
   const [qty, setQty] = useState(1);
   const searchParams = useSearchParams();
-  const currentKey = searchParams.get("key")  
+  const currentKey = searchParams.get("key");
 
   const currentItem: Plush | undefined = Plushies.find(
     (plush) => plush.id === currentKey
   );
 
-  const [selectedSize, setSelectedSize] = useState(currentItem?.sales.sizes[0] || "sm");
+  const [selectedSize, setSelectedSize] = useState(
+    currentItem?.sales.sizes[0] || "sm"
+  );
 
-
-  function addQty(){
-    setQty(prevQty => prevQty = prevQty+1)
+  function addQty() {
+    setQty((prevQty) => (prevQty = prevQty + 1));
   }
 
-  function minusQty(){
+  function minusQty() {
     setQty((prevQty) => (prevQty = prevQty - 1));
-
   }
 
-  function onSelectChange(e: any){
-    const {value} = e.target;
-    setSelectedSize(value)
+  function onSelectChange(e: any) {
+    const { value } = e.target;
+    setSelectedSize(value);
   }
 
-  const totalPriceCalc = (): string =>{
+  const totalPriceCalc = (): string => {
     if (currentItem) {
-    return (qty * parseFloat( currentItem.sales.prices[currentItem.sales.sizes.indexOf(selectedSize)])).toFixed(2);      
-    }else{
+      return (
+        qty *
+        parseFloat(
+          currentItem.sales.prices[
+            currentItem.sales.sizes.indexOf(selectedSize)
+          ]
+        )
+      ).toFixed(2);
+    } else {
       return "0";
     }
-  }
-//TODO - fix ids so delete works but can add more than one of each item
+  };
 
+  
+
+  
   return (
     <div className="flex flex-row align-middle justify-center items-center">
       <div>
@@ -131,16 +141,17 @@ const ItemForm = () => {
             </div>
             <button
               className="border-2 border-slate-500 border-solid px-2 rounded-lg hover:bg-green-300"
-              onClick={() =>
+              onClick={() => {
                 setCart([
                   ...cart,
                   {
                     ...currentItem,
+                    id: nanoid(),
                     qty: qty,
                     totalPrice: totalPriceCalc(),
                   },
-                ])
-              }>
+                ]);                
+              }}>
               Add to Cart
             </button>
           </div>
@@ -148,6 +159,6 @@ const ItemForm = () => {
       </div>
     </div>
   );
-}
+};
 
-export default ItemForm
+export default ItemForm;

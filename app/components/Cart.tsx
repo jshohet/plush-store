@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useGlobalCart } from "../assets/store/store";
+import { useGlobalCart, useGlobalTotal } from "../assets/store/store";
 import Image from "next/image";
 import { BsCart4 } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -10,7 +10,7 @@ import { nanoid } from "@reduxjs/toolkit";
 const Cart = () => {
   const { cart, setCart } = useGlobalCart();
   const [show, setShow] = useState(false);
-  const [total, setTotal] = useState<number>(0);
+  const {total, setTotal} = useGlobalTotal();
 
   const onCartClick = (e: any) => {
     setShow((prevShow) => !prevShow && cart.length > 0);
@@ -18,29 +18,11 @@ const Cart = () => {
 
   const deleteCartItem = (id: string | undefined) => {
     setCart((prevItemData) => {
-      return prevItemData.filter((item) => {
+      return prevItemData.filter((item) => {        
         return item.id !== id;
       });
-    });
-  };
-
-  useEffect(() =>{
-    const totalPrice = () => {
-      if (cart.length > 0) {
-        cart.forEach((el) => {
-          setTotal(
-            (total + parseFloat(el.totalPrice)
-          ));
-        });
-      }else{
-        setTotal(0)
-      }
-    };
-    
-    totalPrice();
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart])  
+    })    
+  };   
 
   const cartDisplay = cart.map((plush) => {
     return (
@@ -71,7 +53,7 @@ const Cart = () => {
   });
 
   
-
+  
   return (
     <div className="flex flex-col h-36 z-50 ">
       <BsCart4

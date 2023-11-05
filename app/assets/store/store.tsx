@@ -1,5 +1,6 @@
 "use client"
 
+import { create } from "domain";
 import {createContext, useContext, Dispatch, SetStateAction, useState} from "react"
 
 type Plush = {
@@ -12,12 +13,19 @@ type Plush = {
   image: string;
   qty?: number;
   imageAlt: string;
-  totalPrice: any;
+  totalPrice?: string | number;
 };
+
+
 
 interface CartProps {
     cart: Plush[],
     setCart: Dispatch<SetStateAction<Plush[]>>
+}
+
+interface TotalProps {
+  total: number,
+  setTotal: Dispatch<SetStateAction<number>>
 }
 
 const GlobalCartContext = createContext<CartProps>({
@@ -25,14 +33,25 @@ const GlobalCartContext = createContext<CartProps>({
   setCart: (): Plush[] => [],
 });
 
+const GlobalTotalContext = createContext<TotalProps>({
+  total: 0,
+  setTotal: (): number => 0
+})
+
+
+
 export const GlobalContextProvider = ({children}: {children: any}) =>{
     const [cart, setCart] = useState<[] | Plush[]>([]);
+    const [total, setTotal] = useState<number>(0);
 
     return (
-      <GlobalCartContext.Provider value={{ cart, setCart }}>
-        {children}
-      </GlobalCartContext.Provider>
+      <GlobalTotalContext.Provider value={{ total, setTotal }}>
+        <GlobalCartContext.Provider value={{ cart, setCart }}>
+          {children}
+        </GlobalCartContext.Provider>
+      </GlobalTotalContext.Provider>
     );
 }
 
 export const useGlobalCart = () => useContext(GlobalCartContext);
+export const useGlobalTotal = () => useContext(GlobalTotalContext);
