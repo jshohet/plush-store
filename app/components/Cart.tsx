@@ -6,6 +6,7 @@ import { BsCart4 } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import Link from "next/link";
 import { nanoid } from "@reduxjs/toolkit";
+import { Plush } from "../assets/store/plush";
 
 const Cart = () => {
   const { cart, setCart } = useGlobalCart();
@@ -17,6 +18,12 @@ const Cart = () => {
   };
 
   const deleteCartItem = (id: string | undefined) => {
+    let heldItem: Plush[];
+    //find object Plush in cart that has id = passed in id
+    heldItem = cart.filter((item) => {
+      return item.id === id
+    })
+    setTotal(total - parseFloat(heldItem[0].totalPrice as string))
     setCart((prevItemData) => {
       return prevItemData.filter((item) => {        
         return item.id !== id;
@@ -50,9 +57,7 @@ const Cart = () => {
         </div>
       </div>
     );
-  });
-
-  
+  });  
   
   return (
     <div className="flex flex-col h-36 z-50 ">

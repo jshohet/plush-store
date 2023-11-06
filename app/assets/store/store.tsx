@@ -16,8 +16,6 @@ type Plush = {
   totalPrice?: string | number;
 };
 
-
-
 interface CartProps {
     cart: Plush[],
     setCart: Dispatch<SetStateAction<Plush[]>>
@@ -42,7 +40,7 @@ const GlobalTotalContext = createContext<TotalProps>({
 
 export const GlobalContextProvider = ({children}: {children: any}) =>{
     const [cart, setCart] = useState<[] | Plush[]>([]);
-    const [total, setTotal] = useState<number>(0);
+    const [total, setTotal] = useState(0);
 
     return (
       <GlobalTotalContext.Provider value={{ total, setTotal }}>

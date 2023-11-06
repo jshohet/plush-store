@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useGlobalCart, useGlobalTotal } from "../../assets/store/store";
 import { useSearchParams } from "next/navigation";
 import { Plushies, Plush } from "@/app/assets/store/plush";
 import Image from "next/image";
-import { current, nanoid } from "@reduxjs/toolkit";
+import {nanoid } from "@reduxjs/toolkit";
 
 const ItemForm = () => {
   const { cart, setCart } = useGlobalCart();
@@ -49,9 +49,22 @@ const ItemForm = () => {
     }
   };
 
-  
-
-  
+  function addItem(){
+    if (currentItem) {
+      setCart([
+        ...cart,
+        {
+          ...currentItem,
+          id: nanoid(),
+          qty: qty,
+          totalPrice: totalPriceCalc(),
+        },
+      ])
+      setTotal(total + parseFloat(totalPriceCalc()));
+      
+    }
+  }
+    
   return (
     <div className="flex flex-row align-middle justify-center items-center">
       <div>
@@ -141,17 +154,7 @@ const ItemForm = () => {
             </div>
             <button
               className="border-2 border-slate-500 border-solid px-2 rounded-lg hover:bg-green-300"
-              onClick={() => {
-                setCart([
-                  ...cart,
-                  {
-                    ...currentItem,
-                    id: nanoid(),
-                    qty: qty,
-                    totalPrice: totalPriceCalc(),
-                  },
-                ]);                
-              }}>
+              onClick={addItem}>
               Add to Cart
             </button>
           </div>
