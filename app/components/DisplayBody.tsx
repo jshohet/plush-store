@@ -2,12 +2,10 @@
 import React, { useState, useEffect, useRef, MutableRefObject } from "react";
 import { Plushies } from "../assets/store/plush";
 import Image from "next/image";
-import { useGlobalCart } from "../assets/store/store";
 import Link from "next/link";
 
 const DisplayBody = () => {
   const [plushies, setPlushies] = useState(Plushies);
-  const { cart, setCart } = useGlobalCart();
 
   // type Checkbox = {
   //   value: string;
@@ -33,8 +31,7 @@ const DisplayBody = () => {
           width={180}
           height={180}
           alt={plush.imageAlt}
-          className="rounded-xl mb-4 mr-2 aspect-square"
-          // 
+          className="rounded-xl mb-4 mr-2 aspect-square cursor-pointer hover:scale-125 transition-all duration-500"          
         />
         <div>
           <h2 className="font-bold flex-wrap">{plush.name}</h2>

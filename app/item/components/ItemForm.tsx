@@ -68,7 +68,7 @@ const ItemForm = () => {
   return (
     <div className="flex flex-row align-middle justify-center items-center">
       <div>
-        {currentItem && (
+        {currentItem ? (
           <Image
             src={currentItem.image}
             alt={currentItem.imageAlt}
@@ -76,6 +76,10 @@ const ItemForm = () => {
             height={500}
             className="rounded-full ml-20"
           />
+        ) : (
+          <h2>
+            Item not found. Please return to the main page and select an item.
+          </h2>
         )}
       </div>
       <div className="ml-6">
@@ -101,6 +105,7 @@ const ItemForm = () => {
                       value="sm"
                       onChange={onSelectChange}
                       className="mr-2"
+                      defaultChecked
                     />
                     <label htmlFor="sm">Small (5&quot;)</label>
                   </div>
@@ -114,6 +119,7 @@ const ItemForm = () => {
                       value="md"
                       onChange={onSelectChange}
                       className="mr-2"
+                      defaultChecked
                     />
                     <label htmlFor="md">Medium (10&quot;)</label>
                   </div>
@@ -127,6 +133,7 @@ const ItemForm = () => {
                       value="lg"
                       onChange={onSelectChange}
                       className="mr-2"
+                      defaultChecked
                     />
                     <label htmlFor="lg">Large (15&quot;)</label>
                   </div>

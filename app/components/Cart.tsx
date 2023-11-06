@@ -33,7 +33,7 @@ const Cart = () => {
 
   const cartDisplay = cart.map((plush) => {
     return (
-      <div key={nanoid()} className="flex flex-row">
+      <div key={nanoid()} className="flex flex-row ease-in duration-300 transition-all">
         <Image
           src={plush.image}
           width={50}
@@ -58,6 +58,8 @@ const Cart = () => {
       </div>
     );
   });  
+
+  
   
   return (
     <div className="flex flex-col h-36 z-50 ">
@@ -67,7 +69,7 @@ const Cart = () => {
         className="cursor-pointer my-auto mr-2"
       />
       {show && (
-        <div className="absolute top-24 right-2 bg-lime-100 rounded-2xl max-h-52 overflow-y-auto">
+        <div className="absolute top-24 right-2 bg-lime-100 rounded-2xl max-h-52 overflow-y-auto ease-in-out duration-700">
           <div>{cartDisplay}</div>
           {cartDisplay.length > 0 && (
             <div>
