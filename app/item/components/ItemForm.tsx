@@ -1,5 +1,5 @@
 "use client";
-import React, {useState } from "react";
+import React, {useState} from "react";
 import { useGlobalCart, useGlobalTotal } from "../../assets/store/store";
 import { useSearchParams } from "next/navigation";
 import { Plushies, Plush } from "@/app/assets/store/plush";
