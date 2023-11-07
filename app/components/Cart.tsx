@@ -74,7 +74,8 @@ const Cart = () => {
           {cartDisplay.length > 0 && (
             <div>
               <h3 className="ml-2">
-                <span className="italic">Total Price:</span> ${total.toFixed(2)}
+                <span className="italic">Total Price:</span> $
+                {total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </h3>
               <Link
                 href="../checkout"

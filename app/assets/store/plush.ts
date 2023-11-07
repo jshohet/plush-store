@@ -189,4 +189,15 @@ export const Plushies: Plush[] = [
     imageAlt: "A picture of the emotional support nuggets plushie.",
     show: true,
   },
+  {
+    id: "17",
+    name: "Cirno Fumo",
+    sales: {
+      prices: ["10.99", "20.99"],
+      sizes: ["sm", "lg"],
+    },
+    image: "/img/cirnofumo.png",
+    imageAlt: "A picture of a Cirno Fumo.",
+    show: true,
+  },
 ];

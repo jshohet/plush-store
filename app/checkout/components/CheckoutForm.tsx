@@ -69,12 +69,21 @@ const CheckoutForm = () => {
       {checkoutDisplay.length > 0 ? (
         <div>
           <div className="flex flex-col mb-10 items-center text-xl">
-            <h2>Subtotal: ${total.toFixed(2)}</h2>
+            <h2>
+              Subtotal: $
+              {total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </h2>
             <h2 className=" underline underline-offset-4">
-              Tax: ${(total * 0.0625).toFixed(2)}
+              Tax: $
+              {(total * 0.0625)
+                .toFixed(2)
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h2>
             <h2 className="font-semibold">
-              Total: ${(total * 1.0625).toFixed(2)}
+              Total: $
+              {(total * 1.0625)
+                .toFixed(2)
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h2>
           </div>
           <div className="flex justify-center">
