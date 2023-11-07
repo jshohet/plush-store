@@ -29,13 +29,13 @@ const CheckoutForm = () => {
         return (
           <div
             key={plush.id}
-            className="flex flex-row bg-slate-100 rounded-2xl mx-6 my-4 w-fit">
+            className="flex flex-row bg-slate-100 rounded-2xl mx-6 my-2 w-fit">
             <Image
               src={plush.image}
               alt={plush.imageAlt}
-              width={200}
-              height={200}
-              className="rounded-3xl p-1"
+              width={80}
+              height={50}
+              className="rounded-3xl p-1 md:w-[200px] lg:w-[300px]"
             />
             <div className="flex flex-row items-center rounded-lg">
               <p className="font-semibold ml-2">{plush.name}</p>

@@ -74,7 +74,7 @@ const ItemForm = () => {
             alt={currentItem.imageAlt}
             width={500}
             height={500}
-            className="rounded-full ml-20"
+            className="rounded-full ml-2"
           />
         ) : (
           <h2>

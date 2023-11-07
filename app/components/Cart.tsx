@@ -69,7 +69,7 @@ const Cart = () => {
         className="cursor-pointer my-auto mr-2"
       />
       {show && (
-        <div className="absolute top-24 right-2 bg-lime-100 rounded-2xl max-h-52 overflow-y-auto ease-in-out duration-700">
+        <div className="absolute top-24 right-2 bg-lime-100 rounded-2xl max-h-52 overflow-y-auto ease-in-out duration-700 ml-2">
           <div>{cartDisplay}</div>
           {cartDisplay.length > 0 && (
             <div>

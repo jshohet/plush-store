@@ -76,99 +76,103 @@ const DisplayBody = () => {
 
 
   return (
-    <div className="flex">
-      <section className="flex flex-col p-5 shadow-xl bg-zinc-300 rounded-xl h-fit ml-4">
-        <h2 className="text-xl font-bold mr-10 whitespace-nowrap mb-4">
+    <div className="flex flex-col sm:flex-row">
+      <section className="flex flex-col p-5 shadow-xl bg-yellow-200 rounded-xl h-fit mx-4 mb-4">
+        <h2 className="text-xl font-bold mx-auto whitespace-nowrap mb-4 ">
           Filter by:{" "}
         </h2>
         <section>
-          <div className="mb-1">
-            <h3 className="italic mb-2">Size: </h3>
-            <div>
-              <label htmlFor="sizes" className="mr-1">
-                Small
-              </label>
-              <input
-                type="checkbox"
-                id="sizes"
-                value="sm"
-                name="sm"
-                onChange={(e) => handleChecked(e)}
-              />
-            </div>
+          <div className="flex flex-row justify-evenly sm:flex-col ">
             <div className="mb-1">
-              <label htmlFor="sizes" className="mr-1">
-                Medium
-              </label>
-              <input
-                type="checkbox"
-                id="sizes"
-                value="md"
-                name="md"
-                onChange={(e) => handleChecked(e)}
-              />
+              <h3 className="italic mb-2">Size: </h3>
+              <div>
+                <label htmlFor="sizes" className="mr-1">
+                  Small
+                </label>
+                <input
+                  type="checkbox"
+                  id="sizes"
+                  value="sm"
+                  name="sm"
+                  onChange={(e) => handleChecked(e)}
+                />
+              </div>
+              <div className="mb-1">
+                <label htmlFor="sizes" className="mr-1">
+                  Medium
+                </label>
+                <input
+                  type="checkbox"
+                  id="sizes"
+                  value="md"
+                  name="md"
+                  onChange={(e) => handleChecked(e)}
+                />
+              </div>
+              <div>
+                <label htmlFor="sizes" className="mr-1">
+                  Large
+                </label>
+                <input
+                  type="checkbox"
+                  id="sizes"
+                  value="lg"
+                  name="lg"
+                  onChange={(e) => handleChecked(e)}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="sizes" className="mr-1">
-                Large
-              </label>
-              <input
-                type="checkbox"
-                id="sizes"
-                value="lg"
-                name="lg"
-                onChange={(e) => handleChecked(e)}
-              />
+            <div className="sm:mt-2">
+              <h3 className="mb-2 italic">Price: </h3>
+              <div className="mb-1">
+                <label htmlFor="smallPrice" className="mr-1">
+                  $10.99
+                </label>
+                <input
+                  type="checkbox"
+                  id="smallPrice"
+                  value="$10.99"
+                  name="10.99"
+                  onChange={(e) => handleChecked(e)}
+                />
+              </div>
+              <div className="mb-1">
+                <label htmlFor="mdPrice" className="mr-1">
+                  $15.99
+                </label>
+                <input
+                  type="checkbox"
+                  id="mdPrice"
+                  value="$15.99"
+                  name="15.99"
+                  onChange={(e) => handleChecked(e)}
+                />
+              </div>
+              <div className="mb-1">
+                <label htmlFor="lgPrice" className="mr-1">
+                  $20.99
+                </label>
+                <input
+                  type="checkbox"
+                  id="lgPrice"
+                  value="$20.99"
+                  name="20.99"
+                  onChange={(e) => handleChecked(e)}
+                />
+              </div>
             </div>
           </div>
-          <div className="mt-10">
-            <h3 className="mb-2 italic">Price: </h3>
-            <div className="mb-1">
-              <label htmlFor="smallPrice" className="mr-1">
-                $10.99
-              </label>
-              <input
-                type="checkbox"
-                id="smallPrice"
-                value="$10.99"
-                name="10.99"
-                onChange={(e) => handleChecked(e)}
-              />
-            </div>
-            <div className="mb-1">
-              <label htmlFor="mdPrice" className="mr-1">
-                $15.99
-              </label>
-              <input
-                type="checkbox"
-                id="mdPrice"
-                value="$15.99"
-                name="15.99"
-                onChange={(e) => handleChecked(e)}
-              />
-            </div>
-            <div className="mb-1">
-              <label htmlFor="lgPrice" className="mr-1">
-                $20.99
-              </label>
-              <input
-                type="checkbox"
-                id="lgPrice"
-                value="$20.99"
-                name="20.99"
-                onChange={(e) => handleChecked(e)}
-              />
-            </div>
+          <div className="flex justify-center mt-2">
+            <button
+              onClick={filterHandler}
+              type="submit"
+              className="flex border-solid border-slate-400 p-2 rounded-xl border-2">
+              Apply filters
+            </button>
           </div>
-          <button
-            onClick={filterHandler}
-            type="submit"
-            className="border-solid border-slate-400 p-2 rounded-xl border-2 mt-4 justify-center">
-            Apply filters
-          </button>
         </section>
       </section>
-      <section className="grid grid-cols-4 ml-10  w-3/4">
+      <section className="grid grid-cols-1 ml-10 md:grid-cols-2 lg:grid-cols-3 w-3/4">
         {plushDisplay}
       </section>
     </div>
