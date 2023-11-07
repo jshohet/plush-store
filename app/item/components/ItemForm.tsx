@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { Plushies, Plush } from "@/app/assets/store/plush";
 import Image from "next/image";
 import {nanoid } from "@reduxjs/toolkit";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ItemForm = () => {
   const { cart, setCart } = useGlobalCart();
@@ -61,7 +63,7 @@ const ItemForm = () => {
         },
       ])
       setTotal(total + parseFloat(totalPriceCalc()));
-      
+      toast("Item added to cart! 🐵");
     }
   }
     
@@ -72,9 +74,9 @@ const ItemForm = () => {
           <Image
             src={currentItem.image}
             alt={currentItem.imageAlt}
-            width={500}
-            height={500}
-            className="rounded-full ml-2"
+            width={200}
+            height={200}
+            className="rounded-full ml-2 md:w-[500px]"
           />
         ) : (
           <h2>
@@ -95,7 +97,7 @@ const ItemForm = () => {
                   ]
                 }
               </p>
-              <div className="flex flex-row mb-2">
+              <div className="flex flex-col lg:flex-row mb-2">
                 {currentItem.sales.sizes.includes("sm") && (
                   <div className="mr-4">
                     <input
@@ -107,7 +109,7 @@ const ItemForm = () => {
                       className="mr-2"
                       defaultChecked
                     />
-                    <label htmlFor="sm">Small (5&quot;)</label>
+                    <label htmlFor="sm ">Small (5&quot;)</label>
                   </div>
                 )}
                 {currentItem.sales.sizes.includes("md") && (
@@ -164,6 +166,14 @@ const ItemForm = () => {
               onClick={addItem}>
               Add to Cart
             </button>
+            <ToastContainer
+              position="bottom-left"
+              autoClose={2000}
+              theme="dark"
+              pauseOnHover
+              hideProgressBar={true}
+              bodyClassName="toast-body"
+            />
           </div>
         )}
       </div>
