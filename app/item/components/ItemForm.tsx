@@ -27,7 +27,7 @@ const ItemForm = () => {
     setQty((prevQty) => (prevQty = prevQty + 1));
   }
 
-  function minusQty() {
+  function minusQty() {    
     setQty((prevQty) => (prevQty = prevQty - 1));
   }
 
@@ -155,8 +155,8 @@ const ItemForm = () => {
                   name="qty"
                   value={qty}
                   className="text-center w-16 text-md font-semibold rounded-lg"
-                  min={0}
-                  max={9999999}
+                  min={1}
+                  maxLength={6}
                   onChange={(e) => setQty(parseFloat(e.target.value))}
                 />
                 <button
