@@ -57,9 +57,7 @@ const Cart = () => {
         </div>
       </div>
     );
-  });  
-
-  
+  });    
   
   return (
     <div className="flex flex-col h-36 z-50 mr-2">

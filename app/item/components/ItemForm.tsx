@@ -52,6 +52,14 @@ const ItemForm = () => {
   };
 
   function addItem(){
+    if(qty < 1){
+      toast.warn("Please select a valid quantity.")
+      return;
+    }
+    if(qty > 99){
+      toast.warn("We don't have that many plushies in stock!")
+      return;
+    }    
     if (currentItem) {
       setCart([
         ...cart,
@@ -107,7 +115,7 @@ const ItemForm = () => {
                       value="sm"
                       onChange={onSelectChange}
                       className="mr-2"
-                      defaultChecked
+                      defaultChecked={currentItem.sales.sizes[0] === "sm"}
                     />
                     <label htmlFor="sm ">Small (5&quot;)</label>
                   </div>
@@ -121,7 +129,7 @@ const ItemForm = () => {
                       value="md"
                       onChange={onSelectChange}
                       className="mr-2"
-                      defaultChecked
+                      defaultChecked={currentItem.sales.sizes[0] === "md"}
                     />
                     <label htmlFor="md">Medium (10&quot;)</label>
                   </div>
@@ -135,7 +143,7 @@ const ItemForm = () => {
                       value="lg"
                       onChange={onSelectChange}
                       className="mr-2"
-                      defaultChecked
+                      defaultChecked={currentItem.sales.sizes[0] === "lg"}
                     />
                     <label htmlFor="lg">Large (15&quot;)</label>
                   </div>
