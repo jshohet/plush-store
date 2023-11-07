@@ -15,6 +15,9 @@ const ItemForm = () => {
   const searchParams = useSearchParams();
   const currentKey = searchParams.get("key");
 
+    console.log(qty);
+
+
   const currentItem: Plush | undefined = Plushies.find(
     (plush) => plush.id === currentKey
   );
@@ -24,6 +27,9 @@ const ItemForm = () => {
   );
 
   function addQty() {
+    if (isNaN(qty)) {
+      setQty(1)
+    }
     setQty((prevQty) => (prevQty = prevQty + 1));
   }
 
@@ -52,14 +58,18 @@ const ItemForm = () => {
   };
 
   function addItem(){
-    if(qty < 1){
-      toast.warn("Please select a valid quantity.")
+    if (qty < 1 || isNaN(qty)) {
+      toast.warn("Please select a valid quantity.");
       return;
     }
     if(qty > 99){
       toast.warn("We don't have that many plushies in stock!")
       return;
     }    
+    if(cart.length > 10){
+      toast.warn("Please check out and start a new cart to add more items.")
+      return
+    }
     if (currentItem) {
       setCart([
         ...cart,
@@ -74,7 +84,8 @@ const ItemForm = () => {
       toast("Item added to cart! 🐵");
     }
   }
-    
+    console.log(isNaN(qty))
+  
   return (
     <div className="flex flex-row align-middle justify-center items-center">
       <div>
@@ -157,6 +168,7 @@ const ItemForm = () => {
                   className="text-center w-16 text-md font-semibold rounded-lg"
                   min={1}
                   maxLength={6}
+                  id="qtyPut"
                   onChange={(e) => setQty(parseFloat(e.target.value))}
                 />
                 <button
