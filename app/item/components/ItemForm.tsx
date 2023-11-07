@@ -155,6 +155,8 @@ const ItemForm = () => {
                   name="qty"
                   value={qty}
                   className="text-center w-16 text-md font-semibold rounded-lg"
+                  min={0}
+                  max={9999999}
                   onChange={(e) => setQty(parseFloat(e.target.value))}
                 />
                 <button
