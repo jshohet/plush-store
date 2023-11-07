@@ -62,7 +62,7 @@ const Cart = () => {
   
   
   return (
-    <div className="flex flex-col h-36 z-50 ">
+    <div className="flex flex-col h-36 z-50 mr-2">
       <BsCart4
         size={30}
         onClick={onCartClick}

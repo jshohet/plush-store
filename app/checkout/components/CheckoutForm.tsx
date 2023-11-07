@@ -80,7 +80,7 @@ const CheckoutForm = () => {
           <div className="flex justify-center">
             <Link
               href="../confirmation"
-              className="border-2 border-slate-500 hover:bg-green-500 hover:border-slate-800 p-5 text-xl font-bold mb-10">
+              className="border-2 border-slate-500 hover:bg-green-500 hover:border-slate-800 p-5 text-xl font-bold mb-10 rounded-lg">
               Checkout
             </Link>
           </div>
@@ -89,7 +89,7 @@ const CheckoutForm = () => {
         <div className="flex justify-center">
           <Link
             href="/"
-            className="border-2 border-slate-500 hover:bg-green-500 hover:border-slate-800 p-5 text-xl font-bold">
+            className="border-2 border-slate-500 hover:bg-green-500 hover:border-slate-800 p-5 text-xl font-bold rounded-lg">
             Return to Home
           </Link>
         </div>
