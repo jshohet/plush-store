@@ -7,66 +7,63 @@ import Link from "next/link";
 const DisplayBody = () => {
   const [plushies, setPlushies] = useState(Plushies);
 
-  // type Checkbox = {
-  //   value: string;
-  //   checkd: boolean;
-  // };
-
-  const [checkbox, setCheckbox] = useState({
+  const [sizeCheckbox, setSizeCheckbox] = useState({
     sm: false,
     md: false,
     lg: false,
+  });
+
+  const [priceCheckbox, setPriceCheckbox] = useState({
     "10.99": false,
     "15.99": false,
     "20.99": false,
   });
 
-
   const plushDisplay = plushies.map((plush) => {
     return (
       <Link key={plush.id} href={`../item?key=${plush.id}`}>
-      <div className="flex" key={plush.id}>
-        <Image
-          src={plush.image}
-          width={180}
-          height={180}
-          alt={plush.imageAlt}
-          className="rounded-xl mb-4 mr-2 aspect-square cursor-pointer hover:scale-125 transition-all duration-500"          
-        />
-        <div>
-          <h2 className="font-bold flex-wrap">{plush.name}</h2>
-          <h3>From {plush.sales.prices[0]}*</h3>
+        <div className="flex" key={plush.id}>
+          <Image
+            src={plush.image}
+            width={180}
+            height={180}
+            alt={plush.imageAlt}
+            className="rounded-xl mb-4 mr-2 aspect-square cursor-pointer hover:scale-125 transition-all duration-500"
+          />
+          <div>
+            <h2 className="font-bold flex-wrap">{plush.name}</h2>
+            <h3>From {plush.sales.prices[0]}*</h3>
+          </div>
         </div>
-      </div>
-       </Link>
+      </Link>
     );
   });
-
+  //TODO - fix
   function filterHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    if (Object.values(checkbox).every((x) => x === false)) {
+    if (
+      Object.values(sizeCheckbox).every((x) => x === false) &&
+      Object.values(priceCheckbox).every((x) => x === false)
+    ) {
       setPlushies(Plushies);
       return;
-    }else{
-        const filtered = Plushies.filter((plush) => {
-            for (let index = 0; index < Object.keys(checkbox).length; index++) {
-              if (Object.values(checkbox)[index] === true) {
-                return (
-                  plush.sales.prices.includes(Object.keys(checkbox)[index]) 
-                  ||
-                  plush.sales.sizes.includes(Object.keys(checkbox)[index])
-                );
-              }
-            }
-          })
-      setPlushies(filtered);  
-    }};
-  
+    } else {
+      const filtered = Plushies.filter((plush) => {
+        const sizeTrue = Object.keys(sizeCheckbox).filter(
+          (key) => sizeCheckbox[key as keyof typeof sizeCheckbox] === true
+        );
+        const priceTrue = Object.keys(priceCheckbox).filter(
+          (key) => priceCheckbox[key as keyof typeof priceCheckbox] === true
+        );
+        return plush.sales.sizes.some((item) => sizeTrue.includes(item)) || plush.sales.prices.some((item)=>priceTrue.includes(item));
+      });
+      setPlushies(filtered);
+    }
+  }
 
-
-  const handleChecked = (e: any) => {
+  const handleSizeCheck = (e: any) => {
     const { checked, name } = e.target;
-    setCheckbox((prevCheckbox) => {
+    setSizeCheckbox((prevCheckbox) => {
       return {
         ...prevCheckbox,
         [name]: checked,
@@ -74,6 +71,15 @@ const DisplayBody = () => {
     });
   };
 
+  const handlePriceCheck = (e: any) => {
+    const { checked, name } = e.target;
+    setPriceCheckbox((prevCheckbox) => {
+      return {
+        ...prevCheckbox,
+        [name]: checked,
+      };
+    });
+  };
 
   return (
     <div className="flex flex-col sm:flex-row">
@@ -94,7 +100,7 @@ const DisplayBody = () => {
                   id="sizes"
                   value="sm"
                   name="sm"
-                  onChange={(e) => handleChecked(e)}
+                  onChange={(e) => handleSizeCheck(e)}
                 />
               </div>
               <div className="mb-1">
@@ -106,7 +112,7 @@ const DisplayBody = () => {
                   id="sizes"
                   value="md"
                   name="md"
-                  onChange={(e) => handleChecked(e)}
+                  onChange={(e) => handleSizeCheck(e)}
                 />
               </div>
               <div>
@@ -118,7 +124,7 @@ const DisplayBody = () => {
                   id="sizes"
                   value="lg"
                   name="lg"
-                  onChange={(e) => handleChecked(e)}
+                  onChange={(e) => handleSizeCheck(e)}
                 />
               </div>
             </div>
@@ -133,7 +139,7 @@ const DisplayBody = () => {
                   id="smallPrice"
                   value="$10.99"
                   name="10.99"
-                  onChange={(e) => handleChecked(e)}
+                  onChange={(e) => handlePriceCheck(e)}
                 />
               </div>
               <div className="mb-1">
@@ -145,7 +151,7 @@ const DisplayBody = () => {
                   id="mdPrice"
                   value="$15.99"
                   name="15.99"
-                  onChange={(e) => handleChecked(e)}
+                  onChange={(e) => handlePriceCheck(e)}
                 />
               </div>
               <div className="mb-1">
@@ -157,7 +163,7 @@ const DisplayBody = () => {
                   id="lgPrice"
                   value="$20.99"
                   name="20.99"
-                  onChange={(e) => handleChecked(e)}
+                  onChange={(e) => handlePriceCheck(e)}
                 />
               </div>
             </div>
