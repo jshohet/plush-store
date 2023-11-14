@@ -81,7 +81,7 @@ const ItemForm = () => {
         },
       ])
       setTotal(total + parseFloat(totalPriceCalc()));
-      toast("Item added to cart! 🐵");
+      toast.success("Item added to cart! 🐵");
     }
   }
     console.log(isNaN(qty))
